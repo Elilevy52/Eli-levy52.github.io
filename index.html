@@ -3,273 +3,215 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eli Levy | Software Engineer Portfolio</title>
+    <title>Eli Levy | Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* CSS Variables - מערכת צבעים גמישה */
         :root {
-            --bg-color: #0d1117;
+            --bg: #0d1117;
             --card-bg: #161b22;
-            --border-color: #30363d;
-            --text-main: #c9d1d9;
+            --text: #e6edf3;
             --text-dim: #8b949e;
             --accent: #58a6ff;
-            --accent-glow: rgba(88, 166, 255, 0.15);
-            --nav-bg: rgba(13, 17, 23, 0.8);
+            --accent-grad: linear-gradient(90deg, #58a6ff, #bc85ff);
+            --border: #30363d;
         }
 
-        /* Light Mode Colors - הגדרות מצב בהיר */
         [data-theme="light"] {
-            --bg-color: #f6f8fa;
-            --card-bg: #ffffff;
-            --border-color: #d0d7de;
-            --text-main: #24292f;
-            --text-dim: #57606a;
-            --accent: #0969da;
-            --accent-glow: rgba(9, 105, 218, 0.1);
-            --nav-bg: rgba(246, 248, 250, 0.8);
+            --bg: #ffffff;
+            --card-bg: #f6f8fa;
+            --text: #1f2328;
+            --text-dim: #657b83;
+            --border: #d0d7de;
         }
 
         body {
             margin: 0;
-            padding: 0;
-            font-family: 'Inter', -apple-system, system-ui, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
             line-height: 1.6;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        .wrapper {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-
-        /* Navigation fixed with blur effect */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
-            position: sticky;
-            top: 0;
-            background: var(--nav-bg);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            border-bottom: 1px solid var(--border-color);
-            margin-bottom: 60px;
-            border-radius: 0 0 12px 12px;
-        }
-
-        .nav-logo { font-weight: 800; font-size: 1.2rem; color: var(--accent); }
-        .nav-links { display: flex; align-items: center; }
-        .nav-links a {
-            color: var(--text-dim);
-            text-decoration: none;
-            margin-left: 20px;
-            font-size: 0.9rem;
             transition: 0.3s;
         }
+
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+
+        /* Navigation */
+        nav {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 0; position: sticky; top: 0; background: var(--bg); z-index: 100;
+        }
+        .nav-links a { color: var(--text-dim); text-decoration: none; margin-left: 20px; font-size: 0.9rem; transition: 0.3s; }
         .nav-links a:hover { color: var(--accent); }
 
-        /* Theme Toggle Switch */
-        #theme-toggle {
-            background: none;
-            border: 1px solid var(--border-color);
-            color: var(--text-main);
-            padding: 5px 10px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 0.8rem;
-            margin-left: 20px;
-            transition: 0.3s;
-        }
-        #theme-toggle:hover { background: var(--accent-glow); }
+        /* Hero Section */
+        .hero { text-align: center; padding: 100px 0; }
+        .hero h1 { font-size: 3.5rem; margin: 10px 0; font-weight: 700; }
+        .hero .subtitle { color: var(--text-dim); font-size: 1.1rem; margin-bottom: 30px; }
+        .tags-row { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 30px; }
+        .tag-pill { border: 1px solid var(--border); padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; color: var(--accent); }
 
-        /* Hero Section with Animation */
-        .hero {
-            text-align: center;
-            margin: 60px 0 100px 0;
-            animation: fadeIn 1s ease-out;
-        }
-        .hero h1 { font-size: 3.5rem; margin: 10px 0; color: var(--text-main); }
-        .hero p { font-size: 1.2rem; color: var(--text-dim); max-width: 650px; margin: 0 auto 30px auto; }
-
-        .btn-group { display: flex; justify-content: center; gap: 15px; }
-        .btn {
-            padding: 12px 28px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: 0.3s;
-        }
-        .btn-primary { background: var(--accent); color: white !important; }
-        .btn-secondary { border: 1px solid var(--border-color); color: var(--text-main); }
-        .btn:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
-
-        /* General Section Styling */
-        section { padding: 60px 0; border-bottom: 1px solid var(--border-color); }
-        .section-title { font-size: 1.8rem; margin-bottom: 40px; color: var(--accent); }
-
-        /* Skills Cards */
-        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-        .skill-card {
-            background: var(--card-bg);
-            padding: 25px;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            transition: 0.3s;
-        }
-        .skill-card:hover { border-color: var(--accent); }
-        .skill-icons img { width: 100%; height: auto; margin-top: 15px; }
-
-        /* Project Card with Glow */
-        .project-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 15px;
-            padding: 30px;
-            text-decoration: none;
-            color: inherit;
-            display: block;
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .project-card:hover { 
-            transform: scale(1.02);
-            border-color: var(--accent);
-            box-shadow: 0 10px 30px var(--accent-glow);
-        }
-        .project-card h4 { font-size: 1.5rem; margin: 0 0 10px 0; color: var(--accent); }
-        .tag {
-            font-size: 0.75rem;
-            background: var(--accent-glow);
-            color: var(--accent);
-            padding: 4px 12px;
-            border-radius: 15px;
-            margin-right: 8px;
-            font-weight: 600;
+        /* Section Headings */
+        .section-header { margin-bottom: 40px; }
+        .section-header h2 { font-size: 1.8rem; margin-bottom: 8px; position: relative; display: inline-block; }
+        .section-header h2::after {
+            content: ""; display: block; width: 40px; height: 3px; 
+            background: var(--accent-grad); margin-top: 5px; border-radius: 2px;
         }
 
-        /* Contact Badges */
-        .contact-badges { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-top: 40px; }
+        /* About Grid */
+        .about-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 40px; align-items: start; }
+        .quick-facts { background: var(--card-bg); padding: 25px; border-radius: 12px; border: 1px solid var(--border); }
+        .fact-item { margin-bottom: 12px; font-size: 0.9rem; }
+        .fact-item b { color: var(--text); }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* Experience & Education */
+        .timeline { position: relative; padding-left: 20px; }
+        .timeline-item { position: relative; padding-bottom: 30px; border-left: 2px solid var(--border); padding-left: 25px; }
+        .timeline-item::before {
+            content: ""; position: absolute; left: -7px; top: 5px;
+            width: 12px; height: 12px; border-radius: 50%; background: var(--accent);
         }
+        .timeline-title { font-weight: 700; font-size: 1.1rem; }
+        .timeline-meta { font-size: 0.85rem; color: var(--text-dim); margin-bottom: 10px; }
+
+        /* Project Cards */
+        .project-card { 
+            background: var(--card-bg); border: 1px solid var(--border); 
+            border-radius: 12px; padding: 30px; margin-bottom: 20px; transition: 0.3s;
+        }
+        .project-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+        .project-link { color: var(--accent); text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; }
+
+        /* Buttons */
+        .btn { 
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 12px 24px; border-radius: 30px; font-weight: 600; text-decoration: none; transition: 0.3s;
+        }
+        .btn-primary { background: var(--accent-grad); color: white; box-shadow: 0 4px 15px rgba(88, 166, 255, 0.3); }
+        .btn-secondary { border: 1px solid var(--border); color: var(--text); }
+
+        @media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; } .hero h1 { font-size: 2.5rem; } }
     </style>
 </head>
 <body>
 
-<div class="wrapper">
+<div class="container">
     <nav>
-        <div class="nav-logo">ELI LEVY</div>
+        <div style="font-weight: 800; font-size: 1.1rem;">Eli Levy</div>
         <div class="nav-links">
             <a href="#about">About</a>
+            <a href="#experience">Experience</a>
             <a href="#skills">Skills</a>
             <a href="#projects">Projects</a>
             <a href="#contact">Contact</a>
-            <button id="theme-toggle">🌓 Toggle Mode</button>
+            <button id="theme-toggle" style="background:none; border:none; cursor:pointer; color:var(--text); font-size:1.1rem;">🌓</button>
         </div>
     </nav>
 
     <header class="hero">
-        <h2 style="color: var(--accent); letter-spacing: 5px; font-size: 0.9rem;">SOFTWARE ENGINEER</h2>
-        <h1>Hi, I'm Eli Levy 👋</h1>
-        <p>
-            <b>NOC Engineer @ NGsoft</b> & <b>Software Engineering Student</b> at Afeka College. 
-            Passionate about Fullstack development, DevOps, and IoT solutions.
-        </p>
+        <p style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; color: var(--text-dim);">Software Engineer</p>
+        <h1>Hi, I'm Eli 👋</h1>
+        <p class="subtitle">I'm a software engineer focusing on building scalable applications and solving complex problems. Passionate about clean code and modern technologies.</p>
+        
+        <div class="tags-row">
+            <span class="tag-pill">Backend • Python • Node.js</span>
+            <span class="tag-pill">Frontend • React • CSS</span>
+            <span class="tag-pill">Cloud • Docker • AWS</span>
+        </div>
+
         <div class="btn-group">
-            <a href="CV.pdf" target="_blank" class="btn btn-primary">Download CV</a>
-            <a href="https://github.com/Elilevy52" target="_blank" class="btn btn-secondary">GitHub Profile</a>
+            <a href="CV.pdf" target="_blank" class="btn btn-primary"><i class="fas fa-file-pdf"></i> View CV</a>
+            <a href="https://github.com/Elilevy52" target="_blank" class="btn btn-secondary"><i class="fab fa-github"></i> View Projects</a>
         </div>
     </header>
 
     <section id="about">
-        <h3 class="section-title">Currently Focused On</h3>
-        <div style="font-size: 1.1rem; color: var(--text-dim);">
-            <p>🚀 Monitoring high-scale network operations as a NOC Engineer at NGsoft.</p>
-            <p>🎓 Studying for B.Sc. in Software Engineering at Afeka College.</p>
-            <p>📱 Building cross-platform mobile experiences with React Native.</p>
-            <p>⚙️ Deep diving into Backend systems with Spring Boot and Python.</p>
-        </div>
-    </section>
-
-    <section id="skills">
-        <h3 class="section-title">Technical Expertise</h3>
-        <div class="skills-grid">
-            <div class="skill-card">
-                <h4 style="margin:0">Programming</h4>
-                <div class="skill-icons">
-                    <img src="https://skillicons.dev/icons?i=java,js,python,c,react,spring" alt="skills" />
-                </div>
+        <div class="section-header"><h2>About Me</h2></div>
+        <div class="about-grid">
+            <div>
+                <p>I'm a software engineer with a strong interest in backend systems, cloud/devops and IoT. I enjoy building things end-to-end – from sensors and microcontrollers through APIs and databases, up to simple UIs and automations.</p>
+                <p>I like understanding how things work under the hood: operating systems, networks, performance and hardware. Currently focusing on gaining real-world experience and shipping working projects.</p>
             </div>
-            <div class="skill-card">
-                <h4 style="margin:0">Tools & DevOps</h4>
-                <div class="skill-icons">
-                    <img src="https://skillicons.dev/icons?i=postman,gradle,git,docker,linux,bash" alt="tools" />
-                </div>
-            </div>
-            <div class="skill-card">
-                <h4 style="margin:0">Infrastructure</h4>
-                <div class="skill-icons">
-                    <img src="https://skillicons.dev/icons?i=mysql,firebase,supabase,arduino,esp32" alt="infra" />
-                </div>
+            <div class="quick-facts">
+                <h4 style="margin-top:0">Quick facts</h4>
+                <div class="fact-item"><b>Location:</b> Israel</div>
+                <div class="fact-item"><b>Degree:</b> B.Sc. Software Engineering @ Afeka</div>
+                <div class="fact-item"><b>Interests:</b> IoT, Backend, DevOps, Home Lab</div>
+                <div class="fact-item"><b>Languages:</b> Hebrew (Native), English (Fluent)</div>
             </div>
         </div>
     </section>
 
-    <section id="projects">
-        <h3 class="section-title">Featured Work</h3>
-        <a href="https://github.com/Elilevy52/WhatsApp-finance-bot" target="_blank" class="project-card">
-            <h4>WhatsApp Finance Bot 🤖</h4>
-            <p>Automated financial assistant. Tracks expenses via WhatsApp, synchronizes with Excel, and provides visual analytics.</p>
-            <div style="margin-top: 15px;">
-                <span class="tag">Node.js</span>
-                <span class="tag">ExcelJS</span>
-                <span class="tag">Fuzzy Search</span>
-                <span class="tag">QuickChart API</span>
+    <section id="experience" style="margin-top: 80px;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px;">
+            <div>
+                <div class="section-header"><h2>Experience</h2></div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-title">NOC Engineer</div>
+                        <div class="timeline-meta">NGsoft | 2024 - Present</div>
+                        <p style="font-size: 0.9rem; color: var(--text-dim);">Monitoring network operations and maintaining system reliability.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-title">Smart Parking Final Project</div>
+                        <div class="timeline-meta">Afeka | 2024 - 2025</div>
+                        <p style="font-size: 0.9rem; color: var(--text-dim);">IoT-based system using ESP32, Raspberry Pi and Spring Boot backend.</p>
+                    </div>
+                </div>
             </div>
-        </a>
+            <div>
+                <div class="section-header"><h2>Education</h2></div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-title">B.Sc. Software Engineering</div>
+                        <div class="timeline-meta">Afeka Academic College | 2021 - 2025</div>
+                        <p style="font-size: 0.9rem; color: var(--text-dim);">Specializing in software architecture, algorithms, and embedded systems.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <footer id="contact" style="text-align: center; padding: 100px 0;">
-        <h3 class="section-title">Let's Connect</h3>
-        <p>I'm currently looking for my first full-time Software Engineering or DevOps role!</p>
-        <div class="contact-badges">
-            <a href="https://github.com/Elilevy52" target="_blank">
-                <img src="https://img.shields.io/badge/GITHUB-181717?style=for-the-badge&logo=github&logoColor=white" />
+    <section id="projects" style="margin-top: 80px;">
+        <div class="section-header"><h2>Projects</h2></div>
+        
+        <div class="project-card">
+            <h3 style="margin-top:0">WhatsApp Finance Bot 🤖</h3>
+            <p>A professional financial assistant that tracks expenses via WhatsApp and syncs them with a structured Excel spreadsheet. Features fuzzy search and visual analytics.</p>
+            <p style="font-size: 0.85rem; color: var(--accent);">Tech: Node.js, WhatsApp-web.js, ExcelJS, QuickChart</p>
+            <a href="https://github.com/Elilevy52/WhatsApp-finance-bot" target="_blank" class="project-link">
+                <i class="fab fa-github"></i> View on GitHub
             </a>
-            <a href="https://linkedin.com/in/eli-levy-114071187" target="_blank">
-                <img src="https://img.shields.io/badge/LINKEDIN-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" />
-            </a>
-            <a href="mailto:elilevy147@gmail.com">
-                <img src="https://img.shields.io/badge/GMAIL-D14836?style=for-the-badge&logo=gmail&logoColor=white" />
-            </a>
+        </div>
+
+        <div class="project-card">
+            <h3 style="margin-top:0">Smart Parking System 🚗</h3>
+            <p>IoT system that detects car presence using sensors and ESP32, aggregates data on Raspberry Pi, and exposes a backend API to manage spots.</p>
+            <p style="font-size: 0.85rem; color: var(--accent);">Tech: ESP32, Spring Boot, Kotlin/Java, PostgreSQL</p>
+            <a href="#" class="project-link"><i class="fab fa-github"></i> View on GitHub</a>
+        </div>
+    </section>
+
+    <footer id="contact" style="margin: 100px 0; border-top: 1px solid var(--border); padding-top: 50px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+            <div>
+                <div class="section-header" style="margin-bottom:10px"><h2>Contact</h2></div>
+                <p style="color:var(--text-dim); max-width: 400px;">The best way to reach me is by email or via LinkedIn. Open to junior roles and internships.</p>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+                <a href="mailto:elilevy147@gmail.com" class="project-link"><i class="fas fa-envelope"></i> Gmail</a>
+                <a href="https://linkedin.com/in/eli-levy-114071187" class="project-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                <a href="https://github.com/Elilevy52" class="project-link"><i class="fab fa-github"></i> GitHub</a>
+            </div>
         </div>
     </footer>
 </div>
 
 <script>
-    // Logic for Dark/Light Mode
     const toggleBtn = document.getElementById('theme-toggle');
-    const currentTheme = localStorage.getItem('theme');
-
-    // Check for saved user preference
-    if (currentTheme) {
-        document.documentElement.setAttribute('data-theme', currentTheme);
-    }
-
     toggleBtn.addEventListener('click', () => {
-        let theme = document.documentElement.getAttribute('data-theme');
-        if (theme === 'light') {
-            document.documentElement.setAttribute('data-theme', 'dark');
-            localStorage.setItem('theme', 'dark');
-        } else {
-            document.documentElement.setAttribute('data-theme', 'light');
-            localStorage.setItem('theme', 'light');
-        }
+        const theme = document.documentElement.getAttribute('data-theme');
+        document.documentElement.setAttribute('data-theme', theme === 'light' ? 'dark' : 'light');
     });
 </script>
 
