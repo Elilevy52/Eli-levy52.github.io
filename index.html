@@ -1,218 +1,340 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" style="scroll-behavior: smooth;">
+<html lang="en" data-bs-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eli Levy | Software Engineer</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Eli Levy - Software Engineer</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,700&display=swap">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
     <style>
         :root {
-            --bg: #0d1117;
-            --card-bg: #161b22;
-            --text: #e6edf3;
-            --text-dim: #8b949e;
-            --accent: #58a6ff;
-            --accent-grad: linear-gradient(90deg, #58a6ff, #bc85ff);
-            --border: #30363d;
+            --primary-color: #3b82f6; /* כחול מודרני */
+            --bg-dark: #0f172a;      /* רקע כהה עמוק */
+            --card-bg: #1e293b;
+            --text-muted: #94a3b8;
         }
 
         body {
-            margin: 0;
-            background-color: var(--bg);
-            color: var(--text);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-            line-height: 1.6;
+            font-family: 'Rubik', sans-serif;
+            background-color: var(--bg-dark);
+            color: #f8fafc;
+            overflow-x: hidden;
         }
 
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
-
-        nav {
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center;
-            padding: 30px 0; 
-            position: sticky; 
-            top: 0; 
-            background: var(--bg); 
-            z-index: 100;
+        /* --- Navbar --- */
+        .navbar {
+            padding: 20px 0;
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(10px);
         }
-        .nav-logo { font-weight: 800; font-size: 1.4rem; color: white; }
-        .nav-links a { color: var(--text-dim); text-decoration: none; margin-left: 30px; font-size: 0.95rem; transition: 0.3s; }
-        .nav-links a:hover { color: var(--accent); }
-        
-        .hero { 
-            padding: 120px 0; 
-            text-align: center; 
+        .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: #fff;
         }
-        .hero h1 { font-size: 4rem; margin: 15px 0; font-weight: 800; }
-        .hero p { color: var(--text-dim); font-size: 1.2rem; max-width: 750px; margin: 0 auto 35px; }
-        
-        .pill-row { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-bottom: 40px; }
-        .pill { background: #1c2128; border: 1px solid var(--border); padding: 6px 18px; border-radius: 20px; font-size: 0.85rem; color: var(--accent); }
-
-        .hero-btns { display: flex; justify-content: center; gap: 20px; }
-        .cv-btn { 
-            background: var(--accent-grad); color: white; padding: 14px 30px; 
-            border-radius: 50px; text-decoration: none; font-weight: 700; 
-            display: inline-flex; align-items: center; gap: 10px; transition: 0.3s;
+        .logo span { color: var(--primary-color); }
+        .nav-link {
+            color: var(--text-muted) !important;
+            font-weight: 500;
+            margin-left: 20px;
+            transition: 0.3s;
         }
-        .cv-btn:hover { opacity: 0.9; transform: translateY(-2px); }
+        .nav-link:hover, .nav-link.active { color: var(--primary-color) !important; }
 
-       
-        section { padding: 80px 0; text-align: left; }
-        .section-header h2 { font-size: 2.2rem; margin-bottom: 15px; position: relative; display: inline-block; }
-        .section-header h2::after {
-            content: ""; display: block; width: 60px; height: 4px; 
-            background: var(--accent-grad); margin-top: 10px; border-radius: 2px;
+        /* --- Hero Section (Centered) --- */
+        #hero {
+            padding: 150px 0 100px;
+            text-align: center;
+        }
+        .btn-showcase {
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--primary-color);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 50px;
+            padding: 5px 15px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        .hero-name {
+            font-size: 4.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+        .hero-name span { color: var(--primary-color); }
+        .tagline {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
         }
 
-        
-        .about-grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 60px; }
-        .quick-facts { background: var(--card-bg); padding: 35px; border-radius: 16px; border: 1px solid var(--border); }
-        .fact { margin-bottom: 15px; font-size: 0.95rem; border-bottom: 1px solid #21262d; padding-bottom: 10px; }
-        .fact:last-child { border: none; }
-        .fact b { color: var(--accent); margin-right: 8px; }
+        /* --- Generic Section Styles (Left Aligned) --- */
+        section { padding: 100px 0; }
+        .theme-text {
+            color: var(--primary-color);
+            background: rgba(59, 130, 246, 0.1);
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        .section-heading {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 40px;
+            text-align: left;
+        }
 
-        
-        .split-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
-        .timeline { border-left: 2px solid var(--border); padding-left: 35px; position: relative; }
-        .timeline-item { position: relative; margin-bottom: 50px; }
+        /* --- Cards & Components --- */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 16px;
+            padding: 30px;
+            transition: 0.3s;
+            height: 100%;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-color);
+        }
+        .skill-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        /* Timeline (Experience) */
+        .timeline-box {
+            border-left: 2px solid var(--primary-color);
+            padding-left: 30px;
+            position: relative;
+        }
+        .timeline-item { margin-bottom: 40px; position: relative; }
         .timeline-item::before {
-            content: ""; position: absolute; left: -42px; top: 8px;
-            width: 14px; height: 14px; border-radius: 50%; background: var(--bg); border: 2px solid var(--accent);
+            content: '';
+            position: absolute;
+            left: -39px;
+            top: 5px;
+            width: 16px;
+            height: 16px;
+            background: var(--bg-dark);
+            border: 3px solid var(--primary-color);
+            border-radius: 50%;
         }
-        .item-title { font-weight: 700; font-size: 1.3rem; margin-bottom: 5px; }
-        .item-meta { font-size: 0.9rem; color: var(--accent); margin-bottom: 15px; font-weight: 600; }
 
-       
-        .project-card { 
-            background: var(--card-bg); border: 1px solid var(--border); 
-            border-radius: 20px; padding: 40px; margin-bottom: 30px; transition: 0.3s;
+        /* Buttons */
+        .primary-bg-btn {
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50px;
+            padding: 12px 30px;
+            font-weight: 600;
+            border: none;
+            transition: 0.3s;
         }
-        .project-card:hover { border-color: var(--accent); transform: translateY(-5px); }
-        .tech-tags { margin-top: 20px; display: flex; gap: 10px; flex-wrap: wrap; }
-        .tech-tag { font-size: 0.8rem; background: rgba(88, 166, 255, 0.1); color: var(--accent); padding: 5px 12px; border-radius: 6px; font-weight: 600; }
+        .primary-bg-btn:hover {
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+            transform: scale(1.05);
+        }
 
         /* Footer */
-        footer { border-top: 1px solid var(--border); padding: 80px 0; margin-top: 40px; }
-        .contact-flex { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 40px; }
-        .contact-links a { display: flex; align-items: center; gap: 12px; color: var(--text-dim); text-decoration: none; margin-bottom: 15px; font-size: 1.1rem; transition: 0.3s; }
-        .contact-links a:hover { color: var(--accent); transform: translateX(5px); }
-
-        @media (max-width: 900px) { .about-grid, .split-grid { grid-template-columns: 1fr; } .hero h1 { font-size: 3rem; } }
+        footer {
+            padding: 50px 0;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            text-align: center;
+            color: var(--text-muted);
+        }
     </style>
 </head>
-<body>
+<body data-bs-spy="scroll" data-bs-target="#navbar">
 
-<div class="container">
-    <nav>
-        <div class="nav-logo">Eli Levy</div>
-        <div class="nav-links">
-            <a href="#about">About</a>
-            <a href="#experience">Experience</a>
-            <a href="#projects">Projects</a>
-            <a href="#contact">Contact</a>
-        </div>
-    </nav>
-
-    <header class="hero">
-        <div style="text-transform: uppercase; letter-spacing: 4px; font-size: 0.9rem; color: var(--accent); font-weight: 700; margin-bottom: 20px;">Software Engineer</div>
-        <h1>Hi, I'm Eli 👋</h1>
-        <p>I build scalable backend architectures and modern software solutions. Passionate about high-performance systems, clean code, and solving complex problems.</p>
-        
-        <div class="pill-row">
-            <div class="pill">Backend • Python • Node.js</div>
-            <div class="pill">Frontend • React • CSS</div>
-            <div class="pill">Cloud • Docker • Linux</div>
-        </div>
-
-        <div class="hero-btns">
-            <a href="CV.pdf" target="_blank" class="cv-btn"><i class="fas fa-file-pdf"></i> View CV</a>
-            <a href="https://github.com/Elilevy52" target="_blank" style="color: white; text-decoration: none; display: flex; align-items: center; gap: 10px; font-weight: 600; padding: 12px 25px; border: 1px solid var(--border); border-radius: 50px; transition: 0.3s;">
-                <i class="fab fa-github" style="font-size: 1.3rem;"></i> GitHub
-            </a>
-        </div>
+    <header>
+        <nav id="navbar" class="navbar navbar-expand-md fixed-top">
+            <div class="container">
+                <a href="#" class="logo">
+                    <span><</span> Eli Levy <span>/></span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                    <i class="bi bi-list text-white"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navMenu">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a href="#hero" class="nav-link active">Home</a></li>
+                        <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                        <li class="nav-item"><a href="#skills" class="nav-link">Skills</a></li>
+                        <li class="nav-item"><a href="#projects" class="nav-link">Projects</a></li>
+                        <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
     </header>
 
+    <section id="hero">
+        <div class="container" data-aos="fade-up">
+            <button class="btn btn-showcase"><i class="bi bi-stars"></i> Software Engineer</button>
+            <h1 class="hero-name">Hello, I'm <span>Eli Levy</span></h1>
+            <p class="tagline">I'm a software engineer focusing on building scalable applications and solving complex problems. Passionate about clean code, backend architectures, and modern technologies.</p>
+            <div class="d-flex justify-content-center gap-3">
+                <a href="CV.pdf" target="_blank"><button class="primary-bg-btn"><i class="bi bi-file-pdf"></i> View CV</button></a>
+                <a href="https://github.com/Elilevy52" target="_blank"><button class="btn btn-outline-light rounded-pill px-4 py-2">GitHub <i class="bi bi-github"></i></button></a>
+            </div>
+        </div>
+    </section>
+
     <section id="about">
-        <div class="section-header"><h2>About Me</h2></div>
-        <div class="about-grid">
-            <div>
-                <p style="font-size: 1.1rem;">I'm a software engineer with a focus on backend development, system integration, and networking. I specialize in building end-to-end solutions that bridge the gap between complex logic and user-facing applications.</p>
-                <p>I value efficient architecture and maintainable code. My goal is to always understand the "why" behind the technology to deliver the best possible performance and reliability.</p>
-            </div>
-            <div class="quick-facts">
-                <h4 style="margin-top:0; margin-bottom: 25px;">Quick facts</h4>
-                <div class="fact"><b>Location:</b> Israel</div>
-                <div class="fact"><b>Degree:</b> B.Sc. Software Engineering @ Afeka</div>
-                <div class="fact"><b>Interests:</b> Backend, DevOps, Home Lab, 3D Printing</div>
-                <div class="fact"><b>Languages:</b> Hebrew (Native), English (Fluent)</div>
-            </div>
-        </div>
-    </section>
-
-    <section id="experience">
-        <div class="split-grid">
-            <div>
-                <div class="section-header"><h2>Experience</h2></div>
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="item-title">NOC Engineer</div>
-                        <div class="item-meta">NGsoft | 2024 - Present</div>
-                        <p style="color: var(--text-dim);">Monitoring high-scale network operations, managing infrastructure stability, and troubleshooting real-time critical systems.</p>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="item-title">Freelance & Student Projects</div>
-                        <div class="item-meta">2022 - 2024</div>
-                        <p style="color: var(--text-dim);">Developing automation scripts, system-level integrations, and custom web tools.</p>
-                    </div>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-7" data-aos="fade-right">
+                    <span class="theme-text">Who am I?</span>
+                    <h2 class="section-heading">About Me</h2>
+                    <p>I'm a software engineer with a strong interest in backend systems, networking, and cloud technologies. I enjoy building things end-to-end – from microservices and APIs to automation scripts and system integration.</p>
+                    <p class="text-muted">I value clean, maintainable code and enjoy understanding how complex systems work under the hood. Currently focusing on developing practical software solutions and expanding my expertise in software architecture.</p>
                 </div>
-            </div>
-            <div>
-                <div class="section-header"><h2>Education</h2></div>
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="item-title">B.Sc. Software Engineering</div>
-                        <div class="item-meta">Afeka Academic College | 2021 - 2025</div>
-                        <p style="color: var(--text-dim);">Deep dive into algorithms, operating systems, networking, and software design patterns.</p>
+                <div class="col-lg-5" data-aos="fade-left">
+                    <div class="card">
+                        <h5 class="mb-4">Quick facts</h5>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><i class="bi bi-geo-alt text-primary me-2"></i> <b>Location:</b> Israel</li>
+                            <li class="mb-2"><i class="bi bi-mortarboard text-primary me-2"></i> <b>Degree:</b> B.Sc. Software Engineering @ Afeka</li>
+                            <li class="mb-2"><i class="bi bi-code-square text-primary me-2"></i> <b>Interests:</b> Backend, DevOps, Home Lab</li>
+                            <li class="mb-2"><i class="bi bi-translate text-primary me-2"></i> <b>Languages:</b> Hebrew, English</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="projects">
-        <div class="section-header"><h2>Featured Projects</h2></div>
-        
-        <div class="project-card">
-            <h3 style="margin-top:0">WhatsApp Finance Bot 🤖</h3>
-            <p style="font-size: 1.1rem; color: var(--text-dim);">A professional financial assistant tracking expenses via WhatsApp. Syncs with Excel using fuzzy search logic and provides visual data analytics.</p>
-            <div class="tech-tags">
-                <span class="tech-tag">Node.js</span>
-                <span class="tech-tag">ExcelJS</span>
-                <span class="tech-tag">QuickChart API</span>
-                <span class="tech-tag">WhatsApp-web.js</span>
+    <section id="experience" class="bg-black bg-opacity-10">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6" data-aos="fade-up">
+                    <span class="theme-text">My Journey</span>
+                    <h2 class="section-heading">Experience</h2>
+                    <div class="timeline-box">
+                        <div class="timeline-item">
+                            <h5 class="mb-1">NOC Engineer</h5>
+                            <p class="text-primary fw-bold mb-2">NGsoft | 2024 - Present</p>
+                            <p class="small text-muted">Monitoring high-scale network operations and troubleshooting real-time critical systems.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <h5 class="mb-1">Student Projects & Freelance</h5>
+                            <p class="text-primary fw-bold mb-2">2022 - 2024</p>
+                            <p class="small text-muted">Developing automation scripts and custom web tools.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <span class="theme-text">Education</span>
+                    <h2 class="section-heading">Degrees</h2>
+                    <div class="timeline-box">
+                        <div class="timeline-item">
+                            <h5 class="mb-1">B.Sc. Software Engineering</h5>
+                            <p class="text-primary fw-bold mb-2">Afeka Academic College | 2021 - 2025</p>
+                            <p class="small text-muted">Focused on algorithms, data structures, and networking.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <a href="https://github.com/Elilevy52/WhatsApp-finance-bot" target="_blank" style="color: var(--accent); text-decoration: none; display: inline-flex; align-items: center; gap: 8px; margin-top: 25px; font-weight: 700;">
-                <i class="fab fa-github"></i> View on GitHub
-            </a>
         </div>
     </section>
 
-    <footer id="contact">
-        <div class="contact-flex">
-            <!-- <div>
-                <div class="section-header"><h2>Contact</h2></div>
-                <p style="color: var(--text-dim); max-width: 450px; font-size: 1.1rem;">I'm currently looking for junior software engineering or DevOps roles. Let's build something together!</p>
-            </div> -->
-            <div class="contact-links">
-                <a href="mailto:elilevy147@gmail.com"><i class="fas fa-envelope"></i> elilevy147@gmail.com</a>
-                <a href="https://linkedin.com/in/eli-levy-114071187" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn Profile</a>
-                <a href="https://github.com/Elilevy52" target="_blank"><i class="fab fa-github"></i> GitHub Profile</a>
+    <section id="skills">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="theme-text">What I know</span>
+                <h2 class="section-heading text-center">Skills</h2>
             </div>
+            <div class="row gy-4">
+                <div class="col-md-4" data-aos="zoom-in">
+                    <div class="card">
+                        <i class="bi bi-server skill-icon"></i>
+                        <h5>Backend</h5>
+                        <p class="small text-muted">Python, Node.js, Java, REST APIs</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="card">
+                        <i class="bi bi-laptop skill-icon"></i>
+                        <h5>Frontend</h5>
+                        <p class="small text-muted">HTML5, CSS3, JavaScript, React, Bootstrap</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="card">
+                        <i class="bi bi-cloud-arrow-up skill-icon"></i>
+                        <h5>DevOps & Tools</h5>
+                        <p class="small text-muted">Docker, Linux, Git, Postman</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="bg-black bg-opacity-10">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="theme-text">What I've done</span>
+                <h2 class="section-heading text-center">Projects</h2>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8" data-aos="fade-up">
+                    <div class="card p-0 overflow-hidden">
+                        <div class="row g-0">
+                            <div class="col-md-4 bg-primary d-flex align-items-center justify-content-center" style="min-height: 200px;">
+                                <i class="bi bi-whatsapp text-white" style="font-size: 5rem;"></i>
+                            </div>
+                            <div class="col-md-8 p-4">
+                                <h3>WhatsApp Finance Bot 🤖</h3>
+                                <p class="text-muted">A professional financial assistant tracking expenses via WhatsApp. Syncs with Excel using fuzzy search logic.</p>
+                                <p class="small fw-bold">Tech: Node.js, ExcelJS, QuickChart API</p>
+                                <a href="https://github.com/Elilevy52/WhatsApp-finance-bot" target="_blank" class="btn btn-link p-0 text-primary text-decoration-none fw-bold">View on GitHub <i class="bi bi-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container text-center">
+            <span class="theme-text">Get in touch</span>
+            <h2 class="section-heading text-center">Contact Me</h2>
+            <p class="tagline">I'm currently looking for junior software engineering or DevOps roles. Let's chat!</p>
+            <div class="d-flex justify-content-center gap-4 fs-2">
+                <a href="mailto:elilevy147@gmail.com" class="text-white"><i class="bi bi-envelope-at"></i></a>
+                <a href="https://linkedin.com/in/eli-levy-114071187" target="_blank" class="text-white"><i class="bi bi-linkedin"></i></a>
+                <a href="https://github.com/Elilevy52" target="_blank" class="text-white"><i class="bi bi-github"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>Made with <i class="bi bi-heart-fill text-danger"></i> by Eli Levy &copy; 2026</p>
         </div>
     </footer>
-</div>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // אתחול ספריית האנימציות
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+    </script>
 </body>
 </html>
