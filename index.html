@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" dir="ltr" style="scroll-behavior: smooth;">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eli Levy | Software Engineer Portfolio</title>
     <style>
+        /* CSS Variables - מערכת צבעים גמישה */
         :root {
             --bg-color: #0d1117;
             --card-bg: #161b22;
@@ -13,6 +14,19 @@
             --text-dim: #8b949e;
             --accent: #58a6ff;
             --accent-glow: rgba(88, 166, 255, 0.15);
+            --nav-bg: rgba(13, 17, 23, 0.8);
+        }
+
+        /* Light Mode Colors - הגדרות מצב בהיר */
+        [data-theme="light"] {
+            --bg-color: #f6f8fa;
+            --card-bg: #ffffff;
+            --border-color: #d0d7de;
+            --text-main: #24292f;
+            --text-dim: #57606a;
+            --accent: #0969da;
+            --accent-glow: rgba(9, 105, 218, 0.1);
+            --nav-bg: rgba(246, 248, 250, 0.8);
         }
 
         body {
@@ -22,23 +36,33 @@
             background-color: var(--bg-color);
             color: var(--text-main);
             line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
         }
 
-        /* Container for all content */
         .wrapper {
             max-width: 900px;
             margin: 0 auto;
             padding: 40px 20px;
         }
 
-        /* Navigation */
+        /* Navigation fixed with blur effect */
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 80px;
+            padding: 20px;
+            position: sticky;
+            top: 0;
+            background: var(--nav-bg);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 60px;
+            border-radius: 0 0 12px 12px;
         }
-        .nav-logo { font-weight: 800; font-size: 1.2rem; color: white; }
+
+        .nav-logo { font-weight: 800; font-size: 1.2rem; color: var(--accent); }
+        .nav-links { display: flex; align-items: center; }
         .nav-links a {
             color: var(--text-dim);
             text-decoration: none;
@@ -48,105 +72,89 @@
         }
         .nav-links a:hover { color: var(--accent); }
 
-        /* Hero Section */
+        /* Theme Toggle Switch */
+        #theme-toggle {
+            background: none;
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 5px 10px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            margin-left: 20px;
+            transition: 0.3s;
+        }
+        #theme-toggle:hover { background: var(--accent-glow); }
+
+        /* Hero Section with Animation */
         .hero {
             text-align: center;
-            margin-bottom: 100px;
-            animation: fadeIn 1s ease-in;
+            margin: 60px 0 100px 0;
+            animation: fadeIn 1s ease-out;
         }
-        .hero h2 {
-            color: var(--accent);
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            font-size: 0.8rem;
-            margin-bottom: 10px;
-        }
-        .hero h1 {
-            font-size: 3.5rem;
-            margin: 10px 0;
-            color: white;
-        }
-        .hero p {
-            font-size: 1.2rem;
-            color: var(--text-dim);
-            max-width: 600px;
-            margin: 0 auto 30px auto;
-        }
+        .hero h1 { font-size: 3.5rem; margin: 10px 0; color: var(--text-main); }
+        .hero p { font-size: 1.2rem; color: var(--text-dim); max-width: 650px; margin: 0 auto 30px auto; }
 
-        /* Badge Buttons */
         .btn-group { display: flex; justify-content: center; gap: 15px; }
         .btn {
-            padding: 10px 25px;
-            border-radius: 6px;
+            padding: 12px 28px;
+            border-radius: 8px;
             text-decoration: none;
             font-weight: 600;
             transition: 0.3s;
         }
-        .btn-primary { background: var(--accent); color: var(--bg-color); }
-        .btn-secondary { border: 1px solid var(--border-color); color: white; }
-        .btn:hover { transform: translateY(-2px); opacity: 0.9; }
+        .btn-primary { background: var(--accent); color: white !important; }
+        .btn-secondary { border: 1px solid var(--border-color); color: var(--text-main); }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
 
-        /* Section Styling */
-        section { margin-bottom: 80px; }
-        h3.section-title {
-            font-size: 1.5rem;
-            margin-bottom: 30px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        h3.section-title::after {
-            content: "";
-            height: 1px;
-            background: var(--border-color);
-            flex-grow: 1;
-        }
+        /* General Section Styling */
+        section { padding: 60px 0; border-bottom: 1px solid var(--border-color); }
+        .section-title { font-size: 1.8rem; margin-bottom: 40px; color: var(--accent); }
 
-        /* Skills Styling */
-        .skills-category {
-            margin-bottom: 25px;
+        /* Skills Cards */
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .skill-card {
             background: var(--card-bg);
-            padding: 20px;
-            border-radius: 10px;
+            padding: 25px;
+            border-radius: 12px;
             border: 1px solid var(--border-color);
+            transition: 0.3s;
         }
-        .skills-category h4 { margin-top: 0; color: var(--accent); margin-bottom: 15px; }
-        .skill-icons img { height: 45px; transition: 0.3s; }
-        .skill-icons img:hover { transform: scale(1.1); }
+        .skill-card:hover { border-color: var(--accent); }
+        .skill-icons img { width: 100%; height: auto; margin-top: 15px; }
 
-        /* Project Card */
+        /* Project Card with Glow */
         .project-card {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 25px;
+            border-radius: 15px;
+            padding: 30px;
             text-decoration: none;
             color: inherit;
             display: block;
-            transition: 0.3s;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-        .project-card:hover { border-color: var(--accent); background: #1c2128; }
-        .project-card h4 { margin: 0 0 10px 0; font-size: 1.3rem; color: white; }
-        .project-tag {
-            font-size: 0.7rem;
+        .project-card:hover { 
+            transform: scale(1.02);
+            border-color: var(--accent);
+            box-shadow: 0 10px 30px var(--accent-glow);
+        }
+        .project-card h4 { font-size: 1.5rem; margin: 0 0 10px 0; color: var(--accent); }
+        .tag {
+            font-size: 0.75rem;
             background: var(--accent-glow);
             color: var(--accent);
-            padding: 3px 10px;
-            border-radius: 10px;
-            margin-right: 5px;
+            padding: 4px 12px;
+            border-radius: 15px;
+            margin-right: 8px;
+            font-weight: 600;
         }
 
-        /* Contact Section */
-        .contact-badges {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-top: 20px;
-        }
+        /* Contact Badges */
+        .contact-badges { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-top: 40px; }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
     </style>
@@ -161,15 +169,16 @@
             <a href="#skills">Skills</a>
             <a href="#projects">Projects</a>
             <a href="#contact">Contact</a>
+            <button id="theme-toggle">🌓 Toggle Mode</button>
         </div>
     </nav>
 
     <header class="hero">
-        <h2>Software Engineer Portfolio</h2>
-        <h1>Hi, I'm Eli 👋</h1>
+        <h2 style="color: var(--accent); letter-spacing: 5px; font-size: 0.9rem;">SOFTWARE ENGINEER</h2>
+        <h1>Hi, I'm Eli Levy 👋</h1>
         <p>
             <b>NOC Engineer @ NGsoft</b> & <b>Software Engineering Student</b> at Afeka College. 
-            Junior Software Engineer specializing in Fullstack, Mobile, and IoT.
+            Passionate about Fullstack development, DevOps, and IoT solutions.
         </p>
         <div class="btn-group">
             <a href="CV.pdf" target="_blank" class="btn btn-primary">Download CV</a>
@@ -178,55 +187,56 @@
     </header>
 
     <section id="about">
-        <h3 class="section-title">What I'm Currently Up To</h3>
-        <ul>
-            <li>🛠️ Working as a <b>NOC Engineer at NGsoft</b>, monitoring network operations.</li>
-            <li>🎓 Completing my <b>B.Sc. in Software Engineering</b> at Afeka Academic College.</li>
-            <li>📱 Developing mobile apps with <b>React Native</b> and <b>Expo Go</b>.</li>
-            <li>⚙️ Building backend services using <b>Spring Boot</b> and <b>Python</b>.</li>
-        </ul>
+        <h3 class="section-title">Currently Focused On</h3>
+        <div style="font-size: 1.1rem; color: var(--text-dim);">
+            <p>🚀 Monitoring high-scale network operations as a NOC Engineer at NGsoft.</p>
+            <p>🎓 Studying for B.Sc. in Software Engineering at Afeka College.</p>
+            <p>📱 Building cross-platform mobile experiences with React Native.</p>
+            <p>⚙️ Deep diving into Backend systems with Spring Boot and Python.</p>
+        </div>
     </section>
 
     <section id="skills">
-        <h3 class="section-title">Technical Skill Set</h3>
-        
-        <div class="skills-category">
-            <h4>Programming & Frameworks</h4>
-            <div class="skill-icons">
-                <img src="https://skillicons.dev/icons?i=java,js,python,c,react,spring" alt="skills" />
+        <h3 class="section-title">Technical Expertise</h3>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <h4 style="margin:0">Programming</h4>
+                <div class="skill-icons">
+                    <img src="https://skillicons.dev/icons?i=java,js,python,c,react,spring" alt="skills" />
+                </div>
             </div>
-        </div>
-
-        <div class="skills-category">
-            <h4>Tools & DevOps</h4>
-            <div class="skill-icons">
-                <img src="https://skillicons.dev/icons?i=postman,gradle,git,docker,linux,bash" alt="tools" />
+            <div class="skill-card">
+                <h4 style="margin:0">Tools & DevOps</h4>
+                <div class="skill-icons">
+                    <img src="https://skillicons.dev/icons?i=postman,gradle,git,docker,linux,bash" alt="tools" />
+                </div>
             </div>
-        </div>
-
-        <div class="skills-category">
-            <h4>Databases & Hardware</h4>
-            <div class="skill-icons">
-                <img src="https://skillicons.dev/icons?i=mysql,firebase,supabase,arduino,ESP32" alt="db-hardware" />
+            <div class="skill-card">
+                <h4 style="margin:0">Infrastructure</h4>
+                <div class="skill-icons">
+                    <img src="https://skillicons.dev/icons?i=mysql,firebase,supabase,arduino,esp32" alt="infra" />
+                </div>
             </div>
         </div>
     </section>
 
     <section id="projects">
-        <h3 class="section-title">Featured Projects</h3>
+        <h3 class="section-title">Featured Work</h3>
         <a href="https://github.com/Elilevy52/WhatsApp-finance-bot" target="_blank" class="project-card">
             <h4>WhatsApp Finance Bot 🤖</h4>
-            <p>Personal financial assistant that tracks expenses via WhatsApp and syncs with Excel using dual-track accounting.</p>
-            <div>
-                <span class="project-tag">Node.js</span>
-                <span class="project-tag">ExcelJS</span>
-                <span class="project-tag">Fuzzy Search</span>
+            <p>Automated financial assistant. Tracks expenses via WhatsApp, synchronizes with Excel, and provides visual analytics.</p>
+            <div style="margin-top: 15px;">
+                <span class="tag">Node.js</span>
+                <span class="tag">ExcelJS</span>
+                <span class="tag">Fuzzy Search</span>
+                <span class="tag">QuickChart API</span>
             </div>
         </a>
     </section>
 
-    <footer id="contact" style="text-align: center; margin-top: 100px; padding-bottom: 50px;">
-        <h3 class="section-title">Connect with Me</h3>
+    <footer id="contact" style="text-align: center; padding: 100px 0;">
+        <h3 class="section-title">Let's Connect</h3>
+        <p>I'm currently looking for my first full-time Software Engineering or DevOps role!</p>
         <div class="contact-badges">
             <a href="https://github.com/Elilevy52" target="_blank">
                 <img src="https://img.shields.io/badge/GITHUB-181717?style=for-the-badge&logo=github&logoColor=white" />
@@ -240,6 +250,28 @@
         </div>
     </footer>
 </div>
+
+<script>
+    // Logic for Dark/Light Mode
+    const toggleBtn = document.getElementById('theme-toggle');
+    const currentTheme = localStorage.getItem('theme');
+
+    // Check for saved user preference
+    if (currentTheme) {
+        document.documentElement.setAttribute('data-theme', currentTheme);
+    }
+
+    toggleBtn.addEventListener('click', () => {
+        let theme = document.documentElement.getAttribute('data-theme');
+        if (theme === 'light') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+        } else {
+            document.documentElement.setAttribute('data-theme', 'light');
+            localStorage.setItem('theme', 'light');
+        }
+    });
+</script>
 
 </body>
 </html>
