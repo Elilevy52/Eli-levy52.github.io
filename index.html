@@ -3,245 +3,243 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eli Levy | Software Engineer</title>
+    <title>Eli Levy | Software Engineer Portfolio</title>
     <style>
-        /* General Styles */
+        :root {
+            --bg-color: #0d1117;
+            --card-bg: #161b22;
+            --border-color: #30363d;
+            --text-main: #c9d1d9;
+            --text-dim: #8b949e;
+            --accent: #58a6ff;
+            --accent-glow: rgba(88, 166, 255, 0.15);
+        }
+
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background-color: #0d1117; /* GitHub dark theme background */
-            color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            text-align: center;
+            font-family: 'Inter', -apple-system, system-ui, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
         }
 
-        /* Navigation Bar */
+        /* Container for all content */
+        .wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Navigation */
         nav {
-            position: absolute;
-            top: 20px;
-            width: 100%;
             display: flex;
-            justify-content: space-around;
+            justify-content: space-between;
             align-items: center;
-            font-size: 0.9rem;
+            margin-bottom: 80px;
         }
-
-        .nav-logo {
-            font-weight: bold;
-            font-size: 1.1rem;
-        }
-
+        .nav-logo { font-weight: 800; font-size: 1.2rem; color: white; }
         .nav-links a {
-            color: #8b949e;
+            color: var(--text-dim);
             text-decoration: none;
-            margin: 0 15px;
-            transition: color 0.3s;
+            margin-left: 20px;
+            font-size: 0.9rem;
+            transition: 0.3s;
         }
-
-        .nav-links a:hover {
-            color: white;
-        }
+        .nav-links a:hover { color: var(--accent); }
 
         /* Hero Section */
-        h2 {
-            color: #8b949e;
-            font-size: 0.9rem;
+        .hero {
+            text-align: center;
+            margin-bottom: 100px;
+            animation: fadeIn 1s ease-in;
+        }
+        .hero h2 {
+            color: var(--accent);
             text-transform: uppercase;
-            letter-spacing: 3px;
+            letter-spacing: 4px;
+            font-size: 0.8rem;
             margin-bottom: 10px;
-            font-weight: 400;
         }
-
-        h1 {
+        .hero h1 {
             font-size: 3.5rem;
-            margin: 10px 0 20px 0;
+            margin: 10px 0;
+            color: white;
         }
-
-        p {
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-dim);
             max-width: 600px;
-            color: #8b949e;
-            line-height: 1.6;
-            margin-bottom: 30px;
-            font-size: 1.1rem;
+            margin: 0 auto 30px auto;
         }
 
-        /* Skill Tags */
-        .tags {
-            margin-bottom: 40px;
-        }
-
-        .tag {
-            background-color: #161b22;
-            border: 1px solid #30363d;
-            border-radius: 20px;
-            padding: 6px 16px;
-            font-size: 0.85rem;
-            margin: 5px;
-            display: inline-block;
-            color: #58a6ff;
-        }
-
-        /* Buttons */
-        .buttons {
-            display: flex;
-            gap: 20px;
-        }
-
+        /* Badge Buttons */
+        .btn-group { display: flex; justify-content: center; gap: 15px; }
         .btn {
-            padding: 12px 30px;
-            border-radius: 8px;
+            padding: 10px 25px;
+            border-radius: 6px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 1rem;
-            transition: transform 0.2s, background-color 0.2s;
+            transition: 0.3s;
+        }
+        .btn-primary { background: var(--accent); color: var(--bg-color); }
+        .btn-secondary { border: 1px solid var(--border-color); color: white; }
+        .btn:hover { transform: translateY(-2px); opacity: 0.9; }
+
+        /* Section Styling */
+        section { margin-bottom: 80px; }
+        h3.section-title {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
+        }
+        h3.section-title::after {
+            content: "";
+            height: 1px;
+            background: var(--border-color);
+            flex-grow: 1;
         }
 
-        .btn-primary {
-            background-color: #5865f2; /* Blueish color for CTA */
-            color: white;
+        /* Skills Styling */
+        .skills-category {
+            margin-bottom: 25px;
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
         }
+        .skills-category h4 { margin-top: 0; color: var(--accent); margin-bottom: 15px; }
+        .skill-icons img { height: 45px; transition: 0.3s; }
+        .skill-icons img:hover { transform: scale(1.1); }
 
-        .btn-secondary {
-            border: 1px solid #30363d;
-            color: white;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            opacity: 0.9;
-        }
-
-/* Projects Section Styling */
-        .projects-section {
-            padding: 80px 20px;
-            background-color: #0d1117;
-            width: 100%;
-            max-width: 1000px;
-        }
-
-        .section-title {
-            font-size: 2rem;
-            margin-bottom: 40px;
-            border-bottom: 2px solid #30363d;
-            display: inline-block;
-            padding-bottom: 10px;
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-        }
-
+        /* Project Card */
         .project-card {
-            background-color: #161b22;
-            border: 1px solid #30363d;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
             border-radius: 12px;
             padding: 25px;
-            text-align: left;
-            transition: all 0.3s ease;
             text-decoration: none;
-            color: white;
+            color: inherit;
+            display: block;
+            transition: 0.3s;
+        }
+        .project-card:hover { border-color: var(--accent); background: #1c2128; }
+        .project-card h4 { margin: 0 0 10px 0; font-size: 1.3rem; color: white; }
+        .project-tag {
+            font-size: 0.7rem;
+            background: var(--accent-glow);
+            color: var(--accent);
+            padding: 3px 10px;
+            border-radius: 10px;
+            margin-right: 5px;
+        }
+
+        /* Contact Section */
+        .contact-badges {
             display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .project-card:hover {
-            transform: translateY(-8px);
-            border-color: #58a6ff;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-        }
-
-        .project-card h3 {
-            margin: 0 0 15px 0;
-            color: #58a6ff;
-            font-size: 1.4rem;
-        }
-
-        .project-card p {
-            font-size: 0.95rem;
-            color: #8b949e;
-            line-height: 1.5;
-            margin-bottom: 20px;
-        }
-
-        .tech-stack {
-            display: flex;
+            justify-content: center;
+            gap: 10px;
             flex-wrap: wrap;
-            gap: 8px;
+            margin-top: 20px;
         }
 
-        .tech-item {
-            font-size: 0.75rem;
-            background: rgba(88, 166, 255, 0.1);
-            color: #58a6ff;
-            padding: 4px 10px;
-            border-radius: 12px;
-            border: 1px solid rgba(88, 166, 255, 0.2);
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
 
+<div class="wrapper">
     <nav>
-        <div class="nav-logo">Eli Levy</div>
+        <div class="nav-logo">ELI LEVY</div>
         <div class="nav-links">
             <a href="#about">About</a>
-            <a href="#experience">Experience</a>
             <a href="#skills">Skills</a>
             <a href="#projects">Projects</a>
             <a href="#contact">Contact</a>
         </div>
     </nav>
 
-    <section>
-        <h2>Software Engineer</h2>
+    <header class="hero">
+        <h2>Software Engineer Portfolio</h2>
         <h1>Hi, I'm Eli 👋</h1>
         <p>
-            I'm a software engineer focusing on building scalable applications and solving complex problems. 
-            Passionate about clean code, modern technologies, and continuous learning.
+            <b>NOC Engineer @ NGsoft</b> & <b>Software Engineering Student</b> at Afeka College. 
+            Junior Software Engineer specializing in Fullstack, Mobile, and IoT.
         </p>
-
-        <div class="tags">
-            <span class="tag">Backend • Python • Node.js</span>
-            <span class="tag">Frontend • React • CSS</span>
-            <span class="tag">Cloud • Docker • AWS</span>
+        <div class="btn-group">
+            <a href="CV.pdf" target="_blank" class="btn btn-primary">Download CV</a>
+            <a href="https://github.com/Elilevy52" target="_blank" class="btn btn-secondary">GitHub Profile</a>
         </div>
+    </header>
 
-        <div class="buttons">
-            <a href="CV.pdf" target="_blank" class="btn btn-primary">📄 View CV</a>
-            <a href="#" class="btn btn-secondary">💻 View Projects</a>
-        </div>
-<section class="projects-section" id="projects">
-        <h2 class="section-title">Featured Projects</h2>
-        <div class="projects-grid">
-            
-            <a href="https://github.com/Elilevy52/WhatsApp-finance-bot" target="_blank" class="project-card">
-                <div>
-                    <h3>WhatsApp Finance Bot 🤖</h3>
-                    <p>
-                        A professional financial assistant that tracks expenses via WhatsApp. 
-                        Features real-time Excel sync, dual-track accounting, and visual analytics with QuickChart API.
-                    </p>
-                </div>
-                <div class="tech-stack">
-                    <span class="tech-item">Node.js</span>
-                    <span class="tech-item">ExcelJS</span>
-                    <span class="tech-item">WhatsApp-web.js</span>
-                    <span class="tech-item">Fuzzy Search</span>
-                </div>
-            </a>
-
-            </div>
+    <section id="about">
+        <h3 class="section-title">What I'm Currently Up To</h3>
+        <ul>
+            <li>🛠️ Working as a <b>NOC Engineer at NGsoft</b>, monitoring network operations.</li>
+            <li>🎓 Completing my <b>B.Sc. in Software Engineering</b> at Afeka Academic College.</li>
+            <li>📱 Developing mobile apps with <b>React Native</b> and <b>Expo Go</b>.</li>
+            <li>⚙️ Building backend services using <b>Spring Boot</b> and <b>Python</b>.</li>
+        </ul>
     </section>
+
+    <section id="skills">
+        <h3 class="section-title">Technical Skill Set</h3>
+        
+        <div class="skills-category">
+            <h4>Programming & Frameworks</h4>
+            <div class="skill-icons">
+                <img src="https://skillicons.dev/icons?i=java,js,python,c,react,spring" alt="skills" />
+            </div>
+        </div>
+
+        <div class="skills-category">
+            <h4>Tools & DevOps</h4>
+            <div class="skill-icons">
+                <img src="https://skillicons.dev/icons?i=postman,gradle,git,docker,linux,bash" alt="tools" />
+            </div>
+        </div>
+
+        <div class="skills-category">
+            <h4>Databases & Hardware</h4>
+            <div class="skill-icons">
+                <img src="https://skillicons.dev/icons?i=mysql,firebase,supabase,arduino,ESP32" alt="db-hardware" />
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h3 class="section-title">Featured Projects</h3>
+        <a href="https://github.com/Elilevy52/WhatsApp-finance-bot" target="_blank" class="project-card">
+            <h4>WhatsApp Finance Bot 🤖</h4>
+            <p>Personal financial assistant that tracks expenses via WhatsApp and syncs with Excel using dual-track accounting.</p>
+            <div>
+                <span class="project-tag">Node.js</span>
+                <span class="project-tag">ExcelJS</span>
+                <span class="project-tag">Fuzzy Search</span>
+            </div>
+        </a>
+    </section>
+
+    <footer id="contact" style="text-align: center; margin-top: 100px; padding-bottom: 50px;">
+        <h3 class="section-title">Connect with Me</h3>
+        <div class="contact-badges">
+            <a href="https://github.com/Elilevy52" target="_blank">
+                <img src="https://img.shields.io/badge/GITHUB-181717?style=for-the-badge&logo=github&logoColor=white" />
+            </a>
+            <a href="https://linkedin.com/in/eli-levy-114071187" target="_blank">
+                <img src="https://img.shields.io/badge/LINKEDIN-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" />
+            </a>
+            <a href="mailto:elilevy147@gmail.com">
+                <img src="https://img.shields.io/badge/GMAIL-D14836?style=for-the-badge&logo=gmail&logoColor=white" />
+            </a>
+        </div>
+    </footer>
+</div>
+
 </body>
 </html>
