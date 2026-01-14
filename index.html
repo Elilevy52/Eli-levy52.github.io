@@ -21,12 +21,10 @@
             --body-font: "Poppins", sans-serif;
         }
 
-        /* איפוס בסיסי - מסיר רווחים, קווים תחתונים ונקודות מכל האתר */
+        /* איפוס בסיסי */
         * { box-sizing: border-box; padding: 0; margin: 0; }
-        
-        a { text-decoration: none; } /* מסיר קו תחתון מכל קישור באתר */
-        
-        ul { list-style: none; } /* מסיר נקודות מכל רשימה באתר */
+        a { text-decoration: none; } 
+        ul { list-style: none; } 
 
         html { scroll-behavior: smooth; }
         
@@ -86,15 +84,48 @@
         .home__social-link { font-size: 1.5rem; color: var(--text-color); transition: .3s; }
         .home__social-link:hover { color: var(--first-color); transform: translateY(-3px); }
 
-        /* --- SECTIONS (Left Aligned) --- */
+        /* --- SECTIONS --- */
         .section__title { font-size: 2.25rem; margin-bottom: 3rem; text-align: left; }
 
-        /* About & Skills Cards - Glassmorphism */
+        /* Glassmorphism Cards */
         .glass-card {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.05);
             padding: 2.5rem; border-radius: 24px;
             backdrop-filter: blur(10px);
+        }
+
+        /* Skills Styles - עיצוב חדש שמתאים לנראות */
+        .skills__container {
+            grid-template-columns: repeat(3, 1fr);
+        }
+        .skills__title {
+            font-size: 1.25rem;
+            color: #fff;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+        }
+        .skills__title i { color: var(--first-color); }
+        .skills__list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .75rem;
+        }
+        .skill__tag {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: .5rem 1rem;
+            border-radius: 50px;
+            font-size: .813rem;
+            color: var(--text-color);
+            transition: .3s;
+        }
+        .skill__tag:hover {
+            border-color: var(--first-color);
+            color: var(--first-color);
+            background-color: rgba(59, 130, 246, 0.1);
         }
 
         /* Timeline Style */
@@ -114,8 +145,11 @@
         }
         .button:hover { background-color: var(--first-color-alt); transform: scale(1.05); }
 
-        /* Footer */
         .footer { padding-block: 4rem; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
+
+        @media screen and (max-width: 968px) {
+            .skills__container { grid-template-columns: repeat(2, 1fr); }
+        }
 
         @media screen and (max-width: 768px) {
             .home__container { grid-template-columns: 1fr; text-align: center; }
@@ -123,6 +157,7 @@
             .home__img-box { order: 1; margin-bottom: 3rem; width: 260px; height: 320px; }
             .home__description { margin-inline: auto; }
             .home__social { justify-content: center; }
+            .skills__container { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -134,6 +169,7 @@
             <ul class="nav__list">
                 <li><a href="#home" class="nav__link">Home</a></li>
                 <li><a href="#about" class="nav__link">About</a></li>
+                <li><a href="#skills" class="nav__link">Skills</a></li>
                 <li><a href="#projects" class="nav__link">Projects</a></li>
                 <li><a href="#contact" class="nav__link">Contact</a></li>
             </ul>
@@ -173,6 +209,48 @@
             </div>
         </section>
 
+        <section class="skills section container" id="skills">
+            <h2 class="section__title">Skills</h2>
+            <div class="skills__container grid">
+                <div class="glass-card">
+                    <h3 class="skills__title"><i class="ri-code-line"></i> Languages & Core</h3>
+                    <div class="skills__list">
+                        <span class="skill__tag">Java</span>
+                        <span class="skill__tag">JavaScript</span>
+                        <span class="skill__tag">Kotlin</span>
+                        <span class="skill__tag">C++</span>
+                        <span class="skill__tag">C</span>
+                        <span class="skill__tag">Python</span>
+                        <span class="skill__tag">C#</span>
+                    </div>
+                </div>
+
+                <div class="glass-card">
+                    <h3 class="skills__title"><i class="ri-server-line"></i> Backend & Tools</h3>
+                    <div class="skills__list">
+                        <span class="skill__tag">Spring Boot</span>
+                        <span class="skill__tag">REST APIs</span>
+                        <span class="skill__tag">PostgreSQL</span>
+                        <span class="skill__tag">SupaBase</span>
+                        <span class="skill__tag">Redis</span>
+                        <span class="skill__tag">Docker</span>
+                        <span class="skill__tag">Linux</span>
+                        <span class="skill__tag">Git / GitHub</span>
+                    </div>
+                </div>
+
+                <div class="glass-card">
+                    <h3 class="skills__title"><i class="ri-cpu-line"></i> Embedded & IoT</h3>
+                    <div class="skills__list">
+                        <span class="skill__tag">ESP32</span>
+                        <span class="skill__tag">Arduino</span>
+                        <span class="skill__tag">IoT Prototyping</span>
+                        <span class="skill__tag">Home Lab / NAS</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section class="experience section container">
             <h2 class="section__title">My Journey</h2>
             <div class="timeline">
@@ -191,7 +269,7 @@
 
         <section class="projects section container" id="projects">
             <h2 class="section__title">Featured Project</h2>
-            <div id="contact" class="glass-card grid" style="grid-template-columns: 1fr 2fr; align-items: center;">
+            <div class="glass-card grid" style="grid-template-columns: 1fr 2fr; align-items: center;">
                 <div style="font-size: 4rem; color: var(--first-color); text-align: center;">
                     <i class="ri-whatsapp-line"></i>
                 </div>
@@ -199,6 +277,17 @@
                     <h3>WhatsApp Finance Bot 🤖</h3>
                     <p>Automated financial assistant that syncs transactions to Excel using fuzzy search logic and provides visual data analytics.</p>
                     <a href="https://github.com/Elilevy52/WhatsApp-finance-bot" target="_blank" style="color: var(--first-color); font-weight: 600; display: block; margin-top: 1rem;">View Code <i class="ri-arrow-right-line"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact section container" id="contact">
+            <h2 class="section__title">Get in Touch</h2>
+            <div class="glass-card">
+                <p>The best way to reach me is by email or via LinkedIn.</p>
+                <div style="margin-top: 2rem; display: flex; gap: 2rem;">
+                   <a href="mailto:elilevy147@gmail.com" style="color: var(--first-color); font-weight: 600;"><i class="ri-mail-line"></i> Email Me</a>
+                   <a href="https://linkedin.com/in/eli-levy-114071187" target="_blank" style="color: var(--first-color); font-weight: 600;"><i class="ri-linkedin-box-line"></i> LinkedIn</a>
                 </div>
             </div>
         </section>
