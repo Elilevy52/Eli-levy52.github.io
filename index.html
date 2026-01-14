@@ -24,107 +24,82 @@
             line-height: 1.6;
         }
 
-        .container { max-width: 1000px; margin: 0 auto; padding: 0 40px; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
 
-        /* Navigation */
         nav {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 30px 0; position: sticky; top: 0; background: var(--bg); z-index: 100;
-            border-bottom: 1px solid transparent; /* הכנה לפס גלילה עתידי אם נרצה */
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            padding: 30px 0; 
+            position: sticky; 
+            top: 0; 
+            background: var(--bg); 
+            z-index: 100;
         }
-        .nav-logo { font-weight: 800; font-size: 1.2rem; }
-        .nav-links a { color: var(--text-dim); text-decoration: none; margin-left: 25px; font-size: 0.9rem; transition: 0.3s; }
+        .nav-logo { font-weight: 800; font-size: 1.4rem; color: white; }
+        .nav-links a { color: var(--text-dim); text-decoration: none; margin-left: 30px; font-size: 0.95rem; transition: 0.3s; }
         .nav-links a:hover { color: var(--accent); }
         
         .hero { 
-            padding: 100px 0; 
-            text-align: left; 
+            padding: 120px 0; 
+            text-align: center; 
         }
-        .hero h1 { 
-            font-size: 4rem;
-            margin: 15px 0; 
-            font-weight: 800; 
-            letter-spacing: -1px;
-        }
-        .hero p { 
-            color: var(--text-dim); 
-            font-size: 1.15rem; 
-            max-width: 600px;
-            margin: 0 0 35px 0; 
-        }
+        .hero h1 { font-size: 4rem; margin: 15px 0; font-weight: 800; }
+        .hero p { color: var(--text-dim); font-size: 1.2rem; max-width: 750px; margin: 0 auto 35px; }
         
-        .pill-row { 
-            display: flex; 
-            justify-content: flex-start; 
-            gap: 12px; 
-            flex-wrap: wrap; 
-            margin-bottom: 40px; 
-        }
-        .pill { background: #1c2128; border: 1px solid var(--border); padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; color: var(--accent); font-weight: 500; }
+        .pill-row { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-bottom: 40px; }
+        .pill { background: #1c2128; border: 1px solid var(--border); padding: 6px 18px; border-radius: 20px; font-size: 0.85rem; color: var(--accent); }
 
-        /* Buttons Container - יישור לשמאל */
-        .hero-btns {
-            display: flex;
-            justify-content: flex-start;
-            gap: 20px;
-        }
-
-        /* CV Button */
+        .hero-btns { display: flex; justify-content: center; gap: 20px; }
         .cv-btn { 
-            background: var(--accent-grad); color: white; padding: 12px 28px; 
+            background: var(--accent-grad); color: white; padding: 14px 30px; 
             border-radius: 50px; text-decoration: none; font-weight: 700; 
             display: inline-flex; align-items: center; gap: 10px; transition: 0.3s;
         }
-        .cv-btn:hover { opacity: 0.9; transform: translateY(-2px); box-shadow: 0 10px 20px -10px rgba(88, 166, 255, 0.5); }
+        .cv-btn:hover { opacity: 0.9; transform: translateY(-2px); }
 
-        /* General Section */
-        section { padding: 70px 0; }
-        .section-header h2 { font-size: 2rem; margin-bottom: 15px; position: relative; display: inline-block; font-weight: 700; }
+        /* Sections - מוצמדים לשמאל */
+        section { padding: 80px 0; text-align: left; }
+        .section-header h2 { font-size: 2.2rem; margin-bottom: 15px; position: relative; display: inline-block; }
         .section-header h2::after {
-            content: ""; display: block; width: 50px; height: 4px; 
+            content: ""; display: block; width: 60px; height: 4px; 
             background: var(--accent-grad); margin-top: 10px; border-radius: 2px;
         }
 
-        /* About Grid */
-        .about-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 60px; align-items: start; }
-        .quick-facts { background: var(--card-bg); padding: 30px; border-radius: 16px; border: 1px solid var(--border); }
-        .fact { margin-bottom: 15px; font-size: 0.95rem; display: flex; align-items: center; }
-        .fact b { color: var(--text); margin-right: 8px; min-width: 80px; }
+        /* About Grid - יישור טקסט לשמאל */
+        .about-grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 60px; }
+        .quick-facts { background: var(--card-bg); padding: 35px; border-radius: 16px; border: 1px solid var(--border); }
+        .fact { margin-bottom: 15px; font-size: 0.95rem; border-bottom: 1px solid #21262d; padding-bottom: 10px; }
+        .fact:last-child { border: none; }
+        .fact b { color: var(--accent); margin-right: 8px; }
 
-        /* Experience & Education Split */
-        .split-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
-        .timeline { border-left: 2px solid var(--border); padding-left: 30px; position: relative; }
+        /* Experience & Education - טורים צמודים לשמאל */
+        .split-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
+        .timeline { border-left: 2px solid var(--border); padding-left: 35px; position: relative; }
         .timeline-item { position: relative; margin-bottom: 50px; }
-        .timeline-item:last-child { margin-bottom: 0; }
         .timeline-item::before {
-            content: ""; position: absolute; left: -37px; top: 8px;
-            width: 12px; height: 12px; border-radius: 50%; background: var(--bg); border: 2px solid var(--accent);
+            content: ""; position: absolute; left: -42px; top: 8px;
+            width: 14px; height: 14px; border-radius: 50%; background: var(--bg); border: 2px solid var(--accent);
         }
-        .item-title { font-weight: 700; font-size: 1.2rem; margin-bottom: 5px; }
-        .item-meta { font-size: 0.9rem; color: var(--accent); margin-bottom: 15px; font-weight: 500; }
-        .timeline-item p { margin: 0; }
+        .item-title { font-weight: 700; font-size: 1.3rem; margin-bottom: 5px; }
+        .item-meta { font-size: 0.9rem; color: var(--accent); margin-bottom: 15px; font-weight: 600; }
 
-        /* Project Cards */
+        /* Projects - כרטיסיות רחבות */
         .project-card { 
             background: var(--card-bg); border: 1px solid var(--border); 
-            border-radius: 16px; padding: 35px; margin-bottom: 30px; transition: 0.3s;
+            border-radius: 20px; padding: 40px; margin-bottom: 30px; transition: 0.3s;
         }
-        .project-card:hover { border-color: var(--accent); transform: translateY(-5px); box-shadow: 0 15px 30px -15px rgba(0,0,0,0.5); }
-        .project-card h3 { font-size: 1.4rem; margin-bottom: 15px; }
-        .tech-text { font-size: 0.9rem; color: var(--accent); font-weight: 600; margin-top: 20px; display: inline-block; background: rgba(88, 166, 255, 0.1); padding: 5px 15px; border-radius: 20px; }
-        .project-link { color: var(--accent); text-decoration: none; font-size: 0.95rem; margin-top: 20px; display: inline-flex; align-items: center; gap: 8px; font-weight: 600; }
+        .project-card:hover { border-color: var(--accent); transform: translateY(-5px); }
+        .tech-tags { margin-top: 20px; display: flex; gap: 10px; flex-wrap: wrap; }
+        .tech-tag { font-size: 0.8rem; background: rgba(88, 166, 255, 0.1); color: var(--accent); padding: 5px 12px; border-radius: 6px; font-weight: 600; }
 
         /* Footer */
-        footer { border-top: 1px solid var(--border); padding: 80px 0; margin-top: 60px; }
+        footer { border-top: 1px solid var(--border); padding: 80px 0; margin-top: 40px; }
         .contact-flex { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 40px; }
-        .contact-links a { display: flex; align-items: center; gap: 10px; color: var(--text-dim); text-decoration: none; margin-bottom: 15px; font-size: 1rem; transition: 0.3s; }
-        .contact-links a:hover { color: var(--accent); }
+        .contact-links a { display: flex; align-items: center; gap: 12px; color: var(--text-dim); text-decoration: none; margin-bottom: 15px; font-size: 1.1rem; transition: 0.3s; }
+        .contact-links a:hover { color: var(--accent); transform: translateX(5px); }
 
-        @media (max-width: 768px) { 
-            .about-grid, .split-grid { grid-template-columns: 1fr; gap: 40px; } 
-            .hero h1 { font-size: 3rem; }
-            .container { padding: 0 25px; }
-        }
+        @media (max-width: 900px) { .about-grid, .split-grid { grid-template-columns: 1fr; } .hero h1 { font-size: 3rem; } }
     </style>
 </head>
 <body>
@@ -141,9 +116,9 @@
     </nav>
 
     <header class="hero">
-        <div style="text-transform: uppercase; letter-spacing: 3px; font-size: 0.85rem; color: var(--accent); font-weight: 700; margin-bottom: 20px;">Software Engineer</div>
+        <div style="text-transform: uppercase; letter-spacing: 4px; font-size: 0.9rem; color: var(--accent); font-weight: 700; margin-bottom: 20px;">Software Engineer</div>
         <h1>Hi, I'm Eli 👋</h1>
-        <p>I'm a software engineer focusing on building scalable applications and solving complex problems. Passionate about clean code, backend architectures, and modern technologies.</p>
+        <p>I build scalable backend architectures and modern software solutions. Passionate about high-performance systems, clean code, and solving complex problems.</p>
         
         <div class="pill-row">
             <div class="pill">Backend • Python • Node.js</div>
@@ -154,7 +129,7 @@
         <div class="hero-btns">
             <a href="CV.pdf" target="_blank" class="cv-btn"><i class="fas fa-file-pdf"></i> View CV</a>
             <a href="https://github.com/Elilevy52" target="_blank" style="color: white; text-decoration: none; display: flex; align-items: center; gap: 10px; font-weight: 600; padding: 12px 25px; border: 1px solid var(--border); border-radius: 50px; transition: 0.3s;">
-                <i class="fab fa-github" style="font-size: 1.2rem;"></i> GitHub
+                <i class="fab fa-github" style="font-size: 1.3rem;"></i> GitHub
             </a>
         </div>
     </header>
@@ -163,11 +138,11 @@
         <div class="section-header"><h2>About Me</h2></div>
         <div class="about-grid">
             <div>
-                <p style="margin-top: 0;">I'm a software engineer with a strong interest in backend systems, networking, and cloud technologies. I enjoy building things end-to-end – from microservices and APIs to automation scripts and system integration.</p>
-                <p>I value clean, maintainable code and enjoy understanding how complex systems work under the hood. Currently focusing on developing practical software solutions and expanding my expertise in software architecture.</p>
+                <p style="font-size: 1.1rem;">I'm a software engineer with a focus on backend development, system integration, and networking. I specialize in building end-to-end solutions that bridge the gap between complex logic and user-facing applications.</p>
+                <p>I value efficient architecture and maintainable code. My goal is to always understand the "why" behind the technology to deliver the best possible performance and reliability.</p>
             </div>
             <div class="quick-facts">
-                <h4 style="margin-top:0; margin-bottom: 25px; font-size: 1.1rem;">Quick facts</h4>
+                <h4 style="margin-top:0; margin-bottom: 25px;">Quick facts</h4>
                 <div class="fact"><b>Location:</b> Israel</div>
                 <div class="fact"><b>Degree:</b> B.Sc. Software Engineering @ Afeka</div>
                 <div class="fact"><b>Interests:</b> Backend, DevOps, Home Lab, 3D Printing</div>
@@ -184,12 +159,12 @@
                     <div class="timeline-item">
                         <div class="item-title">NOC Engineer</div>
                         <div class="item-meta">NGsoft | 2024 - Present</div>
-                        <p style="color: var(--text-dim);">Monitoring network operations, managing infrastructure stability, and troubleshooting real-time system alerts in a high-scale environment.</p>
+                        <p style="color: var(--text-dim);">Monitoring high-scale network operations, managing infrastructure stability, and troubleshooting real-time critical systems.</p>
                     </div>
                     <div class="timeline-item">
-                        <div class="item-title">Student Projects & Freelance</div>
-                        <div class="item-meta">Various | 2022 - 2024</div>
-                        <p style="color: var(--text-dim);">Developing custom automation tools, web applications, and performing system-level experiments.</p>
+                        <div class="item-title">Freelance & Student Projects</div>
+                        <div class="item-meta">2022 - 2024</div>
+                        <p style="color: var(--text-dim);">Developing automation scripts, system-level integrations, and custom web tools.</p>
                     </div>
                 </div>
             </div>
@@ -199,7 +174,7 @@
                     <div class="timeline-item">
                         <div class="item-title">B.Sc. Software Engineering</div>
                         <div class="item-meta">Afeka Academic College | 2021 - 2025</div>
-                        <p style="color: var(--text-dim);">Focused on algorithms, data structures, operating systems, and networking.</p>
+                        <p style="color: var(--text-dim);">Deep dive into algorithms, operating systems, networking, and software design patterns.</p>
                     </div>
                 </div>
             </div>
@@ -211,27 +186,29 @@
         
         <div class="project-card">
             <h3 style="margin-top:0">WhatsApp Finance Bot 🤖</h3>
-            <p style="color: var(--text-dim);">A professional financial assistant that tracks expenses via WhatsApp and synchronizes them with an Excel spreadsheet. Includes visual analytics and fuzzy search for Hebrew text.</p>
-            <div class="tech-text">Tech: Node.js, WhatsApp-web.js, ExcelJS, QuickChart API</div>
-            <br>
-            <a href="https://github.com/Elilevy52/WhatsApp-finance-bot" target="_blank" class="project-link">
+            <p style="font-size: 1.1rem; color: var(--text-dim);">A professional financial assistant tracking expenses via WhatsApp. Syncs with Excel using fuzzy search logic and provides visual data analytics.</p>
+            <div class="tech-tags">
+                <span class="tech-tag">Node.js</span>
+                <span class="tech-tag">ExcelJS</span>
+                <span class="tech-tag">QuickChart API</span>
+                <span class="tech-tag">WhatsApp-web.js</span>
+            </div>
+            <a href="https://github.com/Elilevy52/WhatsApp-finance-bot" target="_blank" style="color: var(--accent); text-decoration: none; display: inline-flex; align-items: center; gap: 8px; margin-top: 25px; font-weight: 700;">
                 <i class="fab fa-github"></i> View on GitHub
             </a>
         </div>
-        
-        <p style="color: var(--text-dim); margin-top: 30px;">More projects are available on my <a href="https://github.com/Elilevy52" target="_blank" style="color: var(--accent); text-decoration: none; font-weight: 600;">GitHub profile</a>.</p>
     </section>
 
     <footer id="contact">
         <div class="contact-flex">
             <!-- <div>
-                <div class="section-header" style="margin-bottom: 20px;"><h2>Contact</h2></div>
-                <p style="color: var(--text-dim); max-width: 400px; font-size: 1.1rem;">I'm currently looking for junior software engineering or DevOps roles. Let's talk!</p>
+                <div class="section-header"><h2>Contact</h2></div>
+                <p style="color: var(--text-dim); max-width: 450px; font-size: 1.1rem;">I'm currently looking for junior software engineering or DevOps roles. Let's build something together!</p>
             </div> -->
             <div class="contact-links">
-                <a href="mailto:elilevy147@gmail.com"><i class="fas fa-envelope" style="width: 20px;"></i> elilevy147@gmail.com</a>
-                <a href="https://linkedin.com/in/eli-levy-114071187" target="_blank"><i class="fab fa-linkedin" style="width: 20px;"></i> LinkedIn Profile</a>
-                <a href="https://github.com/Elilevy52" target="_blank"><i class="fab fa-github" style="width: 20px;"></i> GitHub Profile</a>
+                <a href="mailto:elilevy147@gmail.com"><i class="fas fa-envelope"></i> elilevy147@gmail.com</a>
+                <a href="https://linkedin.com/in/eli-levy-114071187" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn Profile</a>
+                <a href="https://github.com/Elilevy52" target="_blank"><i class="fab fa-github"></i> GitHub Profile</a>
             </div>
         </div>
     </footer>
