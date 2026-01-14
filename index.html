@@ -119,50 +119,74 @@
             opacity: 0.9;
         }
 
-        /* Projects Grid */
-        .projects-container {
-            max-width: 900px;
-            margin: 50px auto;
+/* Projects Section Styling */
+        .projects-section {
+            padding: 80px 20px;
+            background-color: #0d1117;
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 40px;
+            border-bottom: 2px solid #30363d;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            padding: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
         }
 
         .project-card {
             background-color: #161b22;
             border: 1px solid #30363d;
             border-radius: 12px;
-            padding: 20px;
+            padding: 25px;
             text-align: left;
-            transition: transform 0.3s, border-color 0.3s;
+            transition: all 0.3s ease;
             text-decoration: none;
-            color: inherit;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .project-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
             border-color: #58a6ff;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
         }
 
         .project-card h3 {
-            margin: 0 0 10px 0;
+            margin: 0 0 15px 0;
             color: #58a6ff;
-            font-size: 1.2rem;
+            font-size: 1.4rem;
         }
 
         .project-card p {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: #8b949e;
-            margin-bottom: 15px;
-            height: 40px; /* שומר על גובה אחיד */
-            overflow: hidden;
+            line-height: 1.5;
+            margin-bottom: 20px;
         }
 
-        .project-tech {
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tech-item {
             font-size: 0.75rem;
-            color: #c9d1d9;
-            font-family: monospace;
+            background: rgba(88, 166, 255, 0.1);
+            color: #58a6ff;
+            padding: 4px 10px;
+            border-radius: 12px;
+            border: 1px solid rgba(88, 166, 255, 0.2);
         }
     </style>
 </head>
@@ -197,24 +221,27 @@
             <a href="CV.pdf" target="_blank" class="btn btn-primary">📄 View CV</a>
             <a href="#" class="btn btn-secondary">💻 View Projects</a>
         </div>
-    </section>
-<section id="projects">
-        <h2 style="text-align: center; margin-top: 50px;">Featured Projects</h2>
-        <div class="projects-container">
+<section class="projects-section" id="projects">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="projects-grid">
             
-            <a href="https://github.com/Elilevy52/NAME-OF-REPO" target="_blank" class="project-card">
-                <h3>Project Name</h3>
-                <p>A brief description of what this project does and why it's cool.</p>
-                <div class="project-tech">Python • Flask • PostgreSQL</div>
+            <a href="https://github.com/Elilevy52/WhatsApp-finance-bot" target="_blank" class="project-card">
+                <div>
+                    <h3>WhatsApp Finance Bot 🤖</h3>
+                    <p>
+                        A professional financial assistant that tracks expenses via WhatsApp. 
+                        Features real-time Excel sync, dual-track accounting, and visual analytics with QuickChart API.
+                    </p>
+                </div>
+                <div class="tech-stack">
+                    <span class="tech-item">Node.js</span>
+                    <span class="tech-item">ExcelJS</span>
+                    <span class="tech-item">WhatsApp-web.js</span>
+                    <span class="tech-item">Fuzzy Search</span>
+                </div>
             </a>
 
-            <a href="https://github.com/Elilevy52/ANOTHER-REPO" target="_blank" class="project-card">
-                <h3>System Automation</h3>
-                <p>Automating daily tasks using Shell scripts and Docker containers.</p>
-                <div class="project-tech">Bash • Docker • Linux</div>
-            </a>
-
-        </div>
+            </div>
     </section>
 </body>
 </html>
