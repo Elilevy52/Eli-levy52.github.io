@@ -21,8 +21,15 @@
             --body-font: "Poppins", sans-serif;
         }
 
+        /* איפוס בסיסי - מסיר רווחים, קווים תחתונים ונקודות מכל האתר */
         * { box-sizing: border-box; padding: 0; margin: 0; }
+        
+        a { text-decoration: none; } /* מסיר קו תחתון מכל קישור באתר */
+        
+        ul { list-style: none; } /* מסיר נקודות מכל רשימה באתר */
+
         html { scroll-behavior: smooth; }
+        
         body {
             background-color: var(--body-color);
             color: var(--text-color);
@@ -40,6 +47,7 @@
             backdrop-filter: blur(10px); z-index: 100;
             border-bottom: 1px solid rgba(255,255,255,0.05);
         }
+        
         .nav { height: var(--header-height); display: flex; justify-content: space-between; align-items: center; }
         .nav__logo { font-size: 1.25rem; font-weight: 700; color: #fff; }
         .nav__logo span { color: var(--first-color); }
@@ -183,7 +191,7 @@
 
         <section class="projects section container" id="projects">
             <h2 class="section__title">Featured Project</h2>
-            <div class="glass-card grid" style="grid-template-columns: 1fr 2fr; align-items: center;">
+            <div id="contact" class="glass-card grid" style="grid-template-columns: 1fr 2fr; align-items: center;">
                 <div style="font-size: 4rem; color: var(--first-color); text-align: center;">
                     <i class="ri-whatsapp-line"></i>
                 </div>
